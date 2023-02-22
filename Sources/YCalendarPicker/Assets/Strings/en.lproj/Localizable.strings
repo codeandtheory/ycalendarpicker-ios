@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  YCalendarPicker
+
+  Created by Mark Pospesel on 1/13/23.
+  Copyright © 2023 Y Media Labs. All rights reserved.
+*/
+
+"Previous_Month_Button_A11y_Label" = "Previous Month";
+"Next_Month_Button_A11y_Label" = "Next Month";
+
+"Day_Button_A11y_Hint" = "Double tap to select.";
+"Today_Day_Descriptor" = ". Today";
+"Booked_Day_Descriptor" = ". Booked";
