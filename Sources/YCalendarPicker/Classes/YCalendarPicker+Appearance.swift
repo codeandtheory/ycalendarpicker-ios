@@ -48,10 +48,10 @@ extension YCalendarPicker {
         ///   - selectedDayAppearance: Appearance for selected day. Default is `.Defaults.selected`.
         ///   - disabledDayAppearance: Appearance for disabled day. Default is `.Defaults.disabled`.
         ///   - bookedDayAppearance: Appearance for already booked day. Default is `Defaults.booked`.
-        ///   - weekdayStyle: Typography and text color for weekdays name. Default is `DefaultStyles.weekday`.
+        ///   - weekdayStyle: Typography and text color for weekday names. Default is `DefaultStyles.weekday`.
         ///   - previousImage: Previous button image. Default is `Appearance.defaultPreviousImage`.
         ///   - nextImage: Next button image. Default is `Appearance.defaultNextImage`.
-        ///   - monthStyle: Typography and text color for Month name in header. Default is `DefaultStyles.month`.
+        ///   - monthStyle: Typography and text color for Month name. Default is `DefaultStyles.month`.
         ///   - backgroundColor: Background color for calendar view. Default is `.systemBackground`.
         public init(
             normalDayAppearance: Day = .Defaults.normal,

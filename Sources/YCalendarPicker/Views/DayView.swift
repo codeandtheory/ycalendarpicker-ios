@@ -10,6 +10,13 @@ import SwiftUI
 import YMatterType
 
 struct DayView {
+    /// maximum scale factor of the month-year text label
+    static let maximumScaleFactor: CGFloat = 1.5
+    /// size of each day
+    static let size = CGSize(width: 40, height: 40)
+    /// horizontal and vertical padding around day view circles
+    static let padding: CGFloat = 2
+
     let appearance: YCalendarPicker.Appearance
     let dateItem: CalendarMonthItem
     let locale: Locale
@@ -27,18 +34,18 @@ extension DayView: View {
             TextStyleLabel(dateItem.day, typography: appearance.typography, configuration: { label in
                 label.isUserInteractionEnabled = true
                 label.textAlignment = .center
-                label.maximumScaleFactor = 1.5
+                label.maximumScaleFactor = DayView.maximumScaleFactor
                 label.textColor = appearance.foregroundColor
             })
-            Spacer().frame(minWidth: 40, minHeight: 40)
+            Spacer().frame(minWidth: DayView.size.width, minHeight: DayView.size.height)
         }
         .background(
             Circle()
                 .stroke(Color(appearance.borderColor), lineWidth: appearance.borderWidth)
                 .background(Circle().foregroundColor(Color(appearance.backgroundColor)))
         )
-        .padding(.horizontal, 2.0)
-        .padding(.vertical, 2.0)
+        .padding(.horizontal, DayView.padding)
+        .padding(.vertical, DayView.padding)
         .onTapGesture {
             guard dateItem.isEnabled else { return }
             selectedDate = dateItem.date

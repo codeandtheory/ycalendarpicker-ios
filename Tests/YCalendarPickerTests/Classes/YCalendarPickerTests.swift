@@ -105,6 +105,37 @@ final class YCalendarPickerTests: XCTestCase {
         sut2.calendarView.monthDidChange(date1)
         XCTAssertNotEqual(sut.calendarView.currentDate, date2)
     }
+
+    func testIntrinsicContentSize() {
+        let sut = makeSUT()
+
+        let size = sut.intrinsicContentSize
+        let daySize = DayView.size.outset(by: NSDirectionalEdgeInsets(all: DayView.padding))
+        let monthHeight = MonthView.minimumButtonSize.height
+        let weekdayHeight = sut.appearance.weekdayStyle.typography.lineHeight + 2 * WeekdayView.verticalPadding
+        let daysHeight = 6 * daySize.height
+
+        XCTAssertEqual(size.width, 7 * daySize.width)
+        XCTAssertEqual(size.height, monthHeight + weekdayHeight + daysHeight)
+    }
+
+    func testRespondsToDynamicTypeChanges() {
+        let sut = makeSUT()
+
+        let oldSize = sut.intrinsicContentSize
+
+        // create some nested view controllers so that we can override traits
+        let (parent, child) = makeNestedViewControllers(subview: sut)
+
+        let traits = UITraitCollection(preferredContentSizeCategory: .accessibilityExtraExtraExtraLarge) // really large
+        parent.setOverrideTraitCollection(traits, forChild: child)
+        sut.traitCollectionDidChange(traits)
+        
+        let newSize = sut.intrinsicContentSize
+
+        XCTAssertEqual(newSize.width, oldSize.width)
+        XCTAssertGreaterThan(newSize.height, oldSize.height)
+    }
 }
 
 private extension YCalendarPickerTests {
@@ -116,7 +147,7 @@ private extension YCalendarPickerTests {
         line: UInt = #line
     ) -> YCalendarPicker {
         let sut = YCalendarPicker(minimumDate: minDate, maximumDate: maxDate)
-        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeak(sut, file: file, line: line)
         return sut
     }
     
@@ -130,7 +161,32 @@ private extension YCalendarPickerTests {
             return nil
         }
         guard let coder = try? NSKeyedUnarchiver(forReadingFrom: data) else { return nil }
-        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeak(sut, file: file, line: line)
         return YCalendarPicker(coder: coder)
+    }
+
+    /// Create nested view controllers containing the view to be tested so that we can override traits
+    func makeNestedViewControllers(
+        subview: UIView,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (parent: UIViewController, child: UIViewController) {
+        let parent = UIViewController()
+        let child = UIViewController()
+        parent.addChild(child)
+        parent.view.addSubview(child.view)
+
+        // constrain child controller view to parent
+        child.view.constrainEdges()
+
+        child.view.addSubview(subview)
+
+        // constrain subview to child view center
+        subview.constrainCenter()
+
+        trackForMemoryLeak(parent, file: file, line: line)
+        trackForMemoryLeak(child, file: file, line: line)
+
+        return (parent, child)
     }
 }

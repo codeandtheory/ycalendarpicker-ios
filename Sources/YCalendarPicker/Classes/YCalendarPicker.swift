@@ -82,6 +82,37 @@ public class YCalendarPicker: UIControl {
         super.init(coder: coder)
         addCalendarView()
     }
+
+    /// Calculates the intrinsic size of the calendar picker
+    override public var intrinsicContentSize: CGSize {
+        let monthLayout = appearance.monthStyle.typography.generateLayout(
+            maximumScaleFactor: MonthView.maximumScaleFactor,
+            compatibleWith: traitCollection
+        )
+        let weekdayLayout = appearance.weekdayStyle.typography.generateLayout(
+            maximumScaleFactor: WeekdayView.maximumScaleFactor,
+            compatibleWith: traitCollection
+        )
+
+        let daySize = DayView.size.outset(by: NSDirectionalEdgeInsets(all: DayView.padding))
+
+        let width = 7 * daySize.width
+
+        let monthHeight = max(monthLayout.lineHeight, MonthView.minimumButtonSize.height)
+        let weekdayHeight = weekdayLayout.lineHeight + (2 * WeekdayView.verticalPadding)
+        let daysHeight = 6 * daySize.height
+        let height = monthHeight + weekdayHeight + daysHeight
+
+        return CGSize(width: width, height: height)
+    }
+
+    /// Adjusts the intrinsic content size on Dynamic Type changes
+    override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentFontAppearance(comparedTo: previousTraitCollection) {
+            invalidateIntrinsicContentSize()
+        }
+    }
 }
 
 private extension YCalendarPicker {

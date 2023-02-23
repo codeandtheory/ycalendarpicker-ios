@@ -11,16 +11,16 @@ import XCTest
 import SwiftUI
 
 final class YCalendarViewTests: XCTestCase {
-    func testDateViewisNotNil() {
+    func testDaysViewisNotNil() {
         let sut = makeSUT()
-        let dateView = sut.getDateView()
-        XCTAssertNotNil(dateView)
+        let daysView = sut.getDaysView()
+        XCTAssertNotNil(daysView)
     }
     
-    func testCalendarHeaderViewisNotNil() {
+    func testMonthViewisNotNil() {
         let sut = makeSUT()
-        let headerView = sut.getHeader()
-        XCTAssertNotNil(headerView)
+        let monthView = sut.getMonthView()
+        XCTAssertNotNil(monthView)
     }
     
     func testDateBodyisNotNil() {
@@ -189,7 +189,6 @@ final class YCalendarViewTests: XCTestCase {
 private extension YCalendarViewTests {
     func makeSUT(
         firstWeekday: Int? = nil,
-        headerDateFormat: String? = nil,
         minimumDate: Date? = nil,
         maximumDate: Date? = nil
     ) -> YCalendarView {
