@@ -246,7 +246,6 @@ Our calendar picker also supports Swift UI!
             }
         }
     }
-
     ```
 
 5. **Receive change notifications**
