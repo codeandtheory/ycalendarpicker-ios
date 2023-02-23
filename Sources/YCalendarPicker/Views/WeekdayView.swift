@@ -11,7 +11,12 @@ import YMatterType
 
 /// WeekdayView is the view shown for weekday names at top of days/dates
 internal struct WeekdayView {
-    var firstWeekday = 0
+    /// maximum scale factor of the week day text labels
+    static let maximumScaleFactor: CGFloat = 1.33
+    /// vertical padding around week day text labels
+    static let verticalPadding: CGFloat = 2
+
+    var firstWeekday: Int
     var appearance: YCalendarPicker.Appearance
     let weekdayNames: [String]
     
@@ -42,14 +47,14 @@ extension WeekdayView: View {
                 getWeekText(for: index.modulo(7))
             }
         }
-        .padding(.vertical, 2)
+        .padding(.vertical, WeekdayView.verticalPadding)
     }
     
     @ViewBuilder
     func getWeekText(for index: Int) -> some View {
         TextStyleLabel(weekdayNames[index], typography: appearance.weekdayStyle.typography, configuration: { label in
             label.textAlignment = .center
-            label.maximumScaleFactor = 1.33
+            label.maximumScaleFactor = WeekdayView.maximumScaleFactor
             label.textColor = appearance.weekdayStyle.textColor
         })
     }

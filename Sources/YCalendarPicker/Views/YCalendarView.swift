@@ -105,9 +105,9 @@ extension YCalendarView: View {
     /// :nodoc:
     public var body: some View {
         VStack(spacing: 0) {
-            getHeader()
+            getMonthView()
             getWeekdayView()
-            getDateView()
+            getDaysView()
         }.gesture(
             DragGesture().onEnded({ value in
                 currentDate = getCurrentDateAfterSwipe(swipeValue: value.translation)
@@ -116,21 +116,24 @@ extension YCalendarView: View {
         .background(Color(self.appearance.backgroundColor))
     }
     
-    /// This function creates a header view
-    /// - Returns: A view with month name, next and previous month button
     @ViewBuilder
-    func getHeader() -> some View {
-        CalendarHeaderView(
+    func getMonthView() -> some View {
+        MonthView(
             currentDate: $currentDate,
             appearance: appearance,
-            headerDateFormat: headerDateFormat,
+            dateFormat: headerDateFormat,
             minimumDate: minimumDate,
             maximumDate: maximumDate,
             locale: locale
         )
     }
-    
-    func getDateView() -> some View {
+
+    @ViewBuilder
+    func getWeekdayView() -> some View {
+        WeekdayView(firstWeekday: firstWeekday, appearance: appearance, locale: locale)
+    }
+
+    func getDaysView() -> some View {
         var allDates = currentDate.getAllDatesForSelectedMonth(firstWeekIndex: firstWeekday.modulo(7))
         allDates = allDates.map { dateItem -> CalendarMonthItem in
             var newItem = dateItem
@@ -160,11 +163,6 @@ extension YCalendarView: View {
         .onChange(of: currentDate) { newValue in
             monthDidChange(newValue.dateOnly)
         }
-    }
-    
-    @ViewBuilder
-    func getWeekdayView() -> some View {
-        WeekdayView(firstWeekday: firstWeekday, appearance: appearance, locale: locale)
     }
 }
 

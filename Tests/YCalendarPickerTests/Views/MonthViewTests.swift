@@ -1,5 +1,5 @@
 //
-//  CalendarHeaderViewTests.swift
+//  MonthViewTests.swift
 //  YCalendarPicker
 //
 //  Created by Sahil Saini on 29/11/22.
@@ -10,14 +10,14 @@ import XCTest
 import SwiftUI
 @testable import YCalendarPicker
 
-final class CalendarHeaderViewTests: XCTestCase {
+final class MonthViewTests: XCTestCase {
     func testMonthAndYearisNotEmpty() {
-        let sut = makeSUT(headerDateFormat: "")
+        let sut = makeSUT(dateFormat: "")
         let monthAndYear = sut.getMonthAndYear()
         XCTAssertNotEqual(monthAndYear, "")
     }
     
-    func testHeaderMonthAndYear() {
+    func testMonthAndYear() {
         let sut = makeSUT()
         let monthAndYear = sut.getMonthAndYear()
         XCTAssertEqual(monthAndYear, Date().toString(withTemplate: "MMMMyyyy"))
@@ -34,14 +34,14 @@ final class CalendarHeaderViewTests: XCTestCase {
         XCTAssertEqual(sut.currentDate, prevExpectedDate2)
     }
     
-    func testHeaderNextImageIsCorrect() {
+    func testNextImageIsCorrect() {
         var sut = makeSUT()
         sut.appearance = YCalendarPicker.Appearance(nextImage: nil)
         let nextImage = sut.getNextImage()
         XCTAssertEqual(nextImage, Image(systemName: "chevron.right").renderingMode(.template))
     }
     
-    func testHeaderPreviousImageIsCorrect() {
+    func testPreviousImageIsCorrect() {
         var sut = makeSUT()
         sut.appearance = YCalendarPicker.Appearance(previousImage: nil)
         let previousImage = sut.getPreviousImage()
@@ -94,28 +94,28 @@ final class CalendarHeaderViewTests: XCTestCase {
         XCTAssertEqual(monthAndYearText, dateFormatter.string(from: Date()))
     }
     
-    func testHeaderPreviewIsNotNill() {
-        XCTAssertNotNil(CalendarHeaderView_Previews.previews)
+    func testPreviewIsNotNill() {
+        XCTAssertNotNil(MonthView_Previews.previews)
     }
 }
 
-private extension CalendarHeaderViewTests {
+private extension MonthViewTests {
     func makeSUT(
         firstWeekday: Int? = nil,
-        headerDateFormat: String? = nil,
+        dateFormat: String? = nil,
         minimumDate: Date? = nil,
         maximumDate: Date? = nil,
         locale: Locale? = nil
-    ) -> CalendarHeaderView {
+    ) -> MonthView {
         var newDate = Date()
         let currentDate = Binding(
             get: { newDate },
             set: { newDate = $0 }
         )
-        let sut = CalendarHeaderView(
+        let sut = MonthView(
             currentDate: currentDate,
             appearance: .default,
-            headerDateFormat: "MMMMyyyy",
+            dateFormat: "MMMMyyyy",
             minimumDate: minimumDate?.dateOnly,
             maximumDate: maximumDate?.dateOnly,
             locale: locale ?? Locale.current

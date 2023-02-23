@@ -1,5 +1,5 @@
 //
-//  CalendarHeaderView.swift
+//  MonthView.swift
 //  YCalendarPicker
 //
 //  Created by Sahil Saini on 29/11/22.
@@ -9,11 +9,16 @@
 import SwiftUI
 import YMatterType
 
-/// Calendar header for month and year
-internal struct CalendarHeaderView {
+/// Displays current month and year together with previous and next buttons
+internal struct MonthView {
+    /// maximum scale factor of the month-year text label
+    static let maximumScaleFactor: CGFloat = 1.5
+    /// minimum size for previous and next buttons
+    static let minimumButtonSize = CGSize(width: 44, height: 44)
+
     @Binding var currentDate: Date
     var appearance: YCalendarPicker.Appearance
-    let headerDateFormat: String
+    let dateFormat: String
     let minimumDate: Date?
     let maximumDate: Date?
     let locale: Locale
@@ -38,17 +43,17 @@ internal struct CalendarHeaderView {
     }
 }
 
-extension CalendarHeaderView: View {
+extension MonthView: View {
     var body: some View {
-        getHeader()
+        getMonthView()
     }
     
     @ViewBuilder
-    func getHeader() -> some View {
+    func getMonthView() -> some View {
         HStack {
             TextStyleLabel(getMonthAndYear(), typography: appearance.monthStyle.typography, configuration: { label in
                 label.textColor = appearance.monthStyle.textColor
-                label.maximumScaleFactor = 1.5
+                label.maximumScaleFactor = MonthView.maximumScaleFactor
             })
             
             Spacer()
@@ -61,7 +66,10 @@ extension CalendarHeaderView: View {
                         .foregroundColor(Color(appearance.monthStyle.textColor))
                         .opacity(isPreviousButtonDisabled ? 0.5 : 1.0)
                 })
-                .frame(minWidth: 44, minHeight: 44)
+                .frame(
+                    minWidth: MonthView.minimumButtonSize.width,
+                    minHeight: MonthView.minimumButtonSize.height
+                )
                 .disabled(isPreviousButtonDisabled)
                 .accessibilityLabel(YCalendarPicker.Strings.previousMonthA11yLabel.localized)
                 Button(action: {
@@ -71,7 +79,10 @@ extension CalendarHeaderView: View {
                         .foregroundColor(Color(appearance.monthStyle.textColor))
                         .opacity(isNextButtonDisabled ? 0.5 : 1.0)
                 })
-                .frame(minWidth: 44, minHeight: 44)
+                .frame(
+                    minWidth: MonthView.minimumButtonSize.width,
+                    minHeight: MonthView.minimumButtonSize.height
+                )
                 .disabled(isNextButtonDisabled)
                 .accessibilityLabel(YCalendarPicker.Strings.nextMonthA11yLabel.localized)
             }
@@ -98,16 +109,16 @@ extension CalendarHeaderView: View {
     }
     
     func getMonthAndYear() -> String {
-        currentDate.toString(withTemplate: headerDateFormat, locale: locale) ?? ""
+        currentDate.toString(withTemplate: dateFormat, locale: locale) ?? ""
     }
 }
 
-struct CalendarHeaderView_Previews: PreviewProvider {
+struct MonthView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarHeaderView(
+        MonthView(
             currentDate: .constant(Date()),
             appearance: .default,
-            headerDateFormat: "MMMMyyyy",
+            dateFormat: "MMMMyyyy",
             minimumDate: nil,
             maximumDate: nil,
             locale: Locale(identifier: "pt_BR")
