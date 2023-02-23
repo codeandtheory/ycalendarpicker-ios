@@ -17,7 +17,15 @@ Documentation is automatically generated from source code comments and rendered 
 Usage
 ----------
 
+### `YCalendarPicker` (UIKit)
+`YCalendarPicker` is a subclass of `UIControl` with an api similar to `UIDatePicker`.
+
+### `YCalendarView` (SwiftUI)
+`YCalendarView` is a struct that conforms to the SwiftUI `View` protocol.
+
 ### Initializers
+
+Both `YCalendarPicker` and `YCalendarView` can be initialized with the same five parameters (`YCalendarPicker` uses `YCalendarView` internally):
 
 ```swift
 init(
@@ -28,18 +36,22 @@ init(
     locale: Locale? = nil
 )
 ```
-The standard initializer lets you specify the first day of the week, appearance, optional minimum and maximum dates, and the locale although it provides sensible defaults for all of these.
+The standard initializer lets you specify the first day of the week, appearance, optional minimum and maximum dates, and the locale, although it provides sensible defaults for all of these.
+
+`YCalendarPicker` has an additional initializer:
 
 ```swift
 init?(coder: NSCoder)
 ```
-For use in Interface Builder or Storyboards. (Really though you should be building your UI in code.) It begins with the default appearance, but you can customize it at runtime by updating its `appearance`.
+For use in Interface Builder or Storyboards (although we recommend that you build your UI in code). 
+
+A calendar picker created this way begins with the default appearance, but you can customize it at runtime by updating its `appearance` property.
 
 ### Customization
 
-`YCalendarPicker` has an `appearance` property of type `Appearance`.
+`YCalendarPicker` and `YCalendarView` both have an `appearance` property of type `Appearance`.
 
-`Appearance` lets you customize the picker's appearance. You have full control over the colors, typographies, and images used. The default appearance is dark mode compatible and WCAG 2.0 AA compliant.
+`Appearance` lets you customize the picker's appearance. You have full control over the colors, typographies, and images used. The default appearance is dark mode compatible and WCAG 2.0 AA compliant for color contrast.
 
 ```swift
 /// Appearance for YCalendarPicker that contains typography and color properties
@@ -117,7 +129,7 @@ public struct Day {
     view.addSubview(calendarPicker)
     ```    
 
-3. **Update or customize appearance**
+3. **Customize and then update appearance**
 
     ```swift
     // Create a calendar picker with the weekday text color set to green
@@ -186,7 +198,58 @@ Our calendar picker also supports Swift UI!
     }
     ```
     
-3. **Receive change notifications**
+3. **Customize and then update appearance**
+
+    ```swift
+    struct CustomCalendar {
+        @State var calendar: YCalendarView = {
+            // Create a calendar picker with the weekday text color set to green
+            var calendar = YCalendarView()
+            calendar.appearance.weekdayStyle.textColor = .green
+            return calendar
+        }()
+    }
+
+    extension CustomCalendar: View {
+        public var body: some View {
+            VStack {
+                calendar
+                Button("Go Red") {
+                    // Change the weekday text color to red
+                    calendar.appearance.weekdayStyle.textColor = .red
+                }
+            }
+        }
+    }
+    ```
+    
+4. **Update Calendar properties**
+
+    ```swift
+    struct CustomCalendar {
+        @State var calendar = YCalendarView()
+    }
+
+    extension CustomCalendar: View {
+        var body: some View {
+            VStack {
+                calendar
+                Button("Set Min/Max") {
+                    // set minimum date to yesterday and maximum date to tomorrow
+                    calendar.minimumDate = Date().previousDate()
+                    calendar.maximumDate = Date().nextDate()
+                }
+                Button("Select Today") {
+                    // select today's date
+                    calendar.date = Date()
+                }
+            }
+        }
+    }
+
+    ```
+
+5. **Receive change notifications**
     To be notified when the user selects a date or changes the month, you can use the `delegate` property and conform to the `YCalendarViewDelegate` protocol.
 
     ```swift
