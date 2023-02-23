@@ -1,5 +1,9 @@
-# Y—Calendar Picker
+![Y—Calendar Picker](https://user-images.githubusercontent.com/1037520/220841655-8784e89b-1836-4fc5-8bc9-40c758b6d6f5.jpeg)
 _An easy-to-use and highly customizable month calendar._
+
+This frameworks provides a month calendar picker with both UIKit and SwiftUI variants.
+
+![Calendar Picker demo animation](https://user-images.githubusercontent.com/1037520/220844728-b6bcf4bd-74a0-4618-b34d-7a1176b96876.gif)
 
 Licensing
 ----------
