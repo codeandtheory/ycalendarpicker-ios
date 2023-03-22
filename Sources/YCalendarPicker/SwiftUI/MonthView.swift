@@ -17,7 +17,7 @@ internal struct MonthView {
     static let minimumButtonSize = CGSize(width: 44, height: 44)
 
     @Binding var currentDate: Date
-    var appearance: YCalendarPicker.Appearance
+    var appearance: CalendarPicker.Appearance
     let dateFormat: String
     let minimumDate: Date?
     let maximumDate: Date?
@@ -71,7 +71,7 @@ extension MonthView: View {
                     minHeight: MonthView.minimumButtonSize.height
                 )
                 .disabled(isPreviousButtonDisabled)
-                .accessibilityLabel(YCalendarPicker.Strings.previousMonthA11yLabel.localized)
+                .accessibilityLabel(CalendarPicker.Strings.previousMonthA11yLabel.localized)
                 Button(action: {
                     updateCurrentDate(byAddingMonth: 1)
                 }, label: {
@@ -84,7 +84,7 @@ extension MonthView: View {
                     minHeight: MonthView.minimumButtonSize.height
                 )
                 .disabled(isNextButtonDisabled)
-                .accessibilityLabel(YCalendarPicker.Strings.nextMonthA11yLabel.localized)
+                .accessibilityLabel(CalendarPicker.Strings.nextMonthA11yLabel.localized)
             }
         }
     }

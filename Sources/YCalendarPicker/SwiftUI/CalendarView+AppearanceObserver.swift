@@ -1,5 +1,5 @@
 //
-//  YCalendarView+AppearanceObserver.swift
+//  CalendarView+AppearanceObserver.swift
 //  YCalendarPicker
 //
 //  Created by Sahil Saini on 29/11/22.
@@ -9,13 +9,13 @@
 import Foundation
 
 // Observe changes in appearance.
-extension YCalendarView {
+extension CalendarView {
     class AppearanceObserver: ObservableObject {
-        @Published var appearance: YCalendarPicker.Appearance
+        @Published var appearance: CalendarPicker.Appearance
         
         /// Initializes an appearance (theme) observer.
         /// - Parameter appearance: appearance object
-        init(appearance: YCalendarPicker.Appearance = .default) {
+        init(appearance: CalendarPicker.Appearance = .default) {
             self.appearance = appearance
         }
     }

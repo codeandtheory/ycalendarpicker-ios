@@ -1,5 +1,5 @@
 //
-//  YCalendarPicker+Appearance..swift
+//  CalendarPicker+Appearance..swift
 //  YCalendarPicker
 //
 //  Created by Sahil Saini on 28/11/22.
@@ -10,8 +10,8 @@ import UIKit
 import YMatterType
 
 /// Control theme i.e; color and typography
-extension YCalendarPicker {
-    /// Appearance for YCalendarPicker that contains typography and color properties
+extension CalendarPicker {
+    /// Appearance for CalendarPicker that contains typography and color properties
     public struct Appearance {
         /// Appearance for days within current month
         public var normalDayAppearance: Day
@@ -81,9 +81,9 @@ extension YCalendarPicker {
     }
 }
 
-extension YCalendarPicker.Appearance {
+extension CalendarPicker.Appearance {
     ///  Default Calendar appearance
-    public static let `default` = YCalendarPicker.Appearance()
+    public static let `default` = CalendarPicker.Appearance()
 
     /// Default image for previous month button. Is a left chevron from SF Symbols in template rendering mode
     public static let defaultPreviousImage = UIImage(systemName: "chevron.left")?.withRenderingMode(.alwaysTemplate)

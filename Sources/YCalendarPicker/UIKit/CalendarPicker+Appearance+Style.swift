@@ -1,5 +1,5 @@
 //
-//  YCalendarPicker+Appearance+Style.swift
+//  CalendarPicker+Appearance+Style.swift
 //  YCalendarPicker
 //
 //  Created by Sahil Saini on 09/02/23.
@@ -10,16 +10,16 @@ import Foundation
 import YMatterType
 import UIKit
 
-extension YCalendarPicker.Appearance {
+extension CalendarPicker.Appearance {
     /// Appearance for weekday, month
     public enum DefaultStyles {
         /// Default value for weekday
         public static let weekday: (textColor: UIColor, typography: Typography) = (
-            YCalendarPicker.Appearance.secondaryLabel, .weekday
+            CalendarPicker.Appearance.secondaryLabel, .weekday
         )
         /// Default value for month
         public static let month: (textColor: UIColor, typography: Typography) = (
-            YCalendarPicker.Appearance.tintColor, .month
+            CalendarPicker.Appearance.tintColor, .month
         )
     }
 }

@@ -1,5 +1,5 @@
 //
-//  YCalendarView+DateObserver.swift
+//  CalendarView+DateObserver.swift
 //  YCalendarPicker
 //
 //  Created by Sahil Saini on 06/01/23.
@@ -9,7 +9,7 @@
 import Foundation
 
 // Observe key dates.
-extension YCalendarView {
+extension CalendarView {
     class DateObserver: ObservableObject {
         @Published var minimumDate: Date?
         @Published var maximumDate: Date?

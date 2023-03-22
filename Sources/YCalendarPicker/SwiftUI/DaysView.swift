@@ -11,7 +11,7 @@ import SwiftUI
 /// DaysView is the view shown for dates
 internal struct DaysView {
     var allDates: [CalendarMonthItem]
-    var appearance: YCalendarPicker.Appearance
+    var appearance: CalendarPicker.Appearance
     @Binding var selectedDate: Date?
     let locale: Locale
 }

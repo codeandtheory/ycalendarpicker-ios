@@ -1,5 +1,5 @@
 //
-//  YCalendarPicker+StringsTests.swift
+//  CalendarPicker+StringsTests.swift
 //  YCalendarPicker
 //
 //  Created by Mark Pospesel on 1/13/23.
@@ -10,9 +10,9 @@ import XCTest
 import YCoreUI
 @testable import YCalendarPicker
 
-final class YCalendarPickerStringsTests: XCTestCase {
+final class CalendarPickerStringsTests: XCTestCase {
     func testLoad() {
-        YCalendarPicker.Strings.allCases.forEach {
+        CalendarPicker.Strings.allCases.forEach {
             // Given a localized string constant
             let string = $0.localized
             // it should not be empty

@@ -9,7 +9,7 @@
 import Foundation
 
 extension CalendarMonthItem {
-    func getDayAppearance(from appearance: YCalendarPicker.Appearance) -> YCalendarPicker.Appearance.Day {
+    func getDayAppearance(from appearance: CalendarPicker.Appearance) -> CalendarPicker.Appearance.Day {
         if isBooked {
             return appearance.bookedDayAppearance
         } else if !isEnabled {

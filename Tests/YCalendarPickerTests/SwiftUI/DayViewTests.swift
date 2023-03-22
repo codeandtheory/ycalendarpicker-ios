@@ -58,7 +58,7 @@ final class DayViewTests: XCTestCase {
 
     func testGetAccessibilityText() throws {
         let previousMonthDate = try XCTUnwrap(Calendar.current.date(byAdding: .month, value: -1, to: Date()))
-        let today = YCalendarPicker.Strings.todayDayDescriptor.localized
+        let today = CalendarPicker.Strings.todayDayDescriptor.localized
 
         XCTAssertTrue(makeSUT().getAccessibilityText().hasSuffix(today))
         XCTAssertFalse(makeSUT(dateToTest: previousMonthDate).getAccessibilityText().hasSuffix(today))
@@ -112,8 +112,8 @@ private extension DayViewTests {
     }
     
     func XCTAssertAppearanceEqual(
-        appearance1: YCalendarPicker.Appearance.Day,
-        appearance2: YCalendarPicker.Appearance.Day
+        appearance1: CalendarPicker.Appearance.Day,
+        appearance2: CalendarPicker.Appearance.Day
     ) {
         XCTAssertTypographyEqual(appearance1.typography, appearance2.typography)
         XCTAssertEqual(appearance1.borderWidth, appearance2.borderWidth)

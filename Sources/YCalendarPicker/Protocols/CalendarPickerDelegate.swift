@@ -1,5 +1,5 @@
 //
-//  YCalendarPickerDelegate.swift
+//  CalendarPickerDelegate.swift
 //  YCalendarPicker
 //
 //  Created by Sahil Saini on 03/02/23.
@@ -8,8 +8,8 @@
 
 import Foundation
 /// Protocol to observe changes in month
-public protocol YCalendarPickerDelegate: AnyObject {
+public protocol CalendarPickerDelegate: AnyObject {
     /// Observe changes in month (Next/Previous).
     /// Called after the user changes the month.
-    func calendarPicker(_ calendarPicker: YCalendarPicker, didChangeMonthTo date: Date)
+    func calendarPicker(_ calendarPicker: CalendarPicker, didChangeMonthTo date: Date)
 }

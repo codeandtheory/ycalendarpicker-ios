@@ -1,5 +1,5 @@
 //
-//  Typography+YCalendarPicker.swift
+//  Typography+CalendarPicker.swift
 //  YCalendarPicker
 //
 //  Created by Sahil Saini on 07/02/23.

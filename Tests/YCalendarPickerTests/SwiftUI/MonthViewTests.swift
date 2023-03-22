@@ -36,14 +36,14 @@ final class MonthViewTests: XCTestCase {
     
     func testNextImageIsCorrect() {
         var sut = makeSUT()
-        sut.appearance = YCalendarPicker.Appearance(nextImage: nil)
+        sut.appearance = CalendarPicker.Appearance(nextImage: nil)
         let nextImage = sut.getNextImage()
         XCTAssertEqual(nextImage, Image(systemName: "chevron.right").renderingMode(.template))
     }
     
     func testPreviousImageIsCorrect() {
         var sut = makeSUT()
-        sut.appearance = YCalendarPicker.Appearance(previousImage: nil)
+        sut.appearance = CalendarPicker.Appearance(previousImage: nil)
         let previousImage = sut.getPreviousImage()
         XCTAssertEqual(previousImage, Image(systemName: "chevron.left").renderingMode(.template))
     }

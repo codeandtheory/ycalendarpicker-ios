@@ -1,5 +1,5 @@
 //
-//  YCalendarPicker.swift
+//  CalendarPicker.swift
 //  YCalendarPicker
 //
 //  Created by Sahil on 18/11/22.
@@ -10,12 +10,18 @@ import UIKit
 import SwiftUI
 import YCoreUI
 
-/// YCalendarPicker for use with UIKit
-public class YCalendarPicker: UIControl {
-    var calendarView: YCalendarView
+/// UIKit month calendar picker
+///
+/// Renamed to `CalendarPicker`.
+@available(*, deprecated, renamed: "CalendarPicker")
+public typealias YCalendarPicker = CalendarPicker
+
+/// CalendarPicker for use with UIKit
+public class CalendarPicker: UIControl {
+    var calendarView: CalendarView
 
     /// Delegate for month change
-    weak public var delegate: YCalendarPickerDelegate?
+    weak public var delegate: CalendarPickerDelegate?
     
     /// Selected date (if any)
     public var date: Date? {
@@ -60,7 +66,7 @@ public class YCalendarPicker: UIControl {
         maximumDate: Date? = nil,
         locale: Locale? = nil
     ) {
-        calendarView = YCalendarView(
+        calendarView = CalendarView(
             firstWeekday: firstWeekday,
             appearance: appearance,
             minimumDate: minimumDate,
@@ -72,7 +78,7 @@ public class YCalendarPicker: UIControl {
     }
     
     required init?(coder: NSCoder) {
-        calendarView = YCalendarView(
+        calendarView = CalendarView(
             firstWeekday: nil,
             appearance: Appearance(),
             minimumDate: nil,
@@ -115,7 +121,7 @@ public class YCalendarPicker: UIControl {
     }
 }
 
-private extension YCalendarPicker {
+private extension CalendarPicker {
     func addCalendarView() {
         calendarView.delegate = self
         let hostController = UIHostingController(rootView: calendarView)
@@ -124,7 +130,7 @@ private extension YCalendarPicker {
     }
 }
 
-extension YCalendarPicker: YCalendarViewDelegate {
+extension CalendarPicker: CalendarViewDelegate {
     /// This method is used to inform when there is a change in selected date.
     /// - Parameter date: new selected date
     public func calendarViewDidSelectDate(_ date: Date?) {

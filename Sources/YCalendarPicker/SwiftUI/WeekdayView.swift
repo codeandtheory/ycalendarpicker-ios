@@ -17,12 +17,12 @@ internal struct WeekdayView {
     static let verticalPadding: CGFloat = 2
 
     var firstWeekday: Int
-    var appearance: YCalendarPicker.Appearance
+    var appearance: CalendarPicker.Appearance
     let weekdayNames: [String]
     
     let locale: Locale
     
-    init(firstWeekday: Int = 0, appearance: YCalendarPicker.Appearance, locale: Locale) {
+    init(firstWeekday: Int = 0, appearance: CalendarPicker.Appearance, locale: Locale) {
         self.firstWeekday = firstWeekday
         self.appearance = appearance
         self.locale = locale

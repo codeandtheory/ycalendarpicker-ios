@@ -17,7 +17,7 @@ struct DayView {
     /// horizontal and vertical padding around day view circles
     static let padding: CGFloat = 2
 
-    let appearance: YCalendarPicker.Appearance
+    let appearance: CalendarPicker.Appearance
     let dateItem: CalendarMonthItem
     let locale: Locale
     @Binding var selectedDate: Date?
@@ -29,7 +29,7 @@ extension DayView: View {
         getDayView(appearance: appearance)
     }
     
-    func getDayView(appearance: YCalendarPicker.Appearance.Day) -> some View {
+    func getDayView(appearance: CalendarPicker.Appearance.Day) -> some View {
         ZStack {
             TextStyleLabel(dateItem.day, typography: appearance.typography, configuration: { label in
                 label.isUserInteractionEnabled = true
@@ -60,11 +60,11 @@ extension DayView: View {
         var accessibilityText = dateItem.date.toString(withTemplate: "dEEEEMMMM", locale: locale) ?? ""
 
         if dateItem.isToday {
-            accessibilityText.append(YCalendarPicker.Strings.todayDayDescriptor.localized)
+            accessibilityText.append(CalendarPicker.Strings.todayDayDescriptor.localized)
         }
         
         if dateItem.isBooked {
-            accessibilityText.append(YCalendarPicker.Strings.bookedDayDescriptor.localized)
+            accessibilityText.append(CalendarPicker.Strings.bookedDayDescriptor.localized)
         }
         
         return accessibilityText
@@ -82,10 +82,10 @@ extension DayView: View {
         guard dateItem.isSelectable,
               !dateItem.isSelected else { return "" }
         
-        return YCalendarPicker.Strings.dayButtonA11yHint.localized
+        return CalendarPicker.Strings.dayButtonA11yHint.localized
     }
 
-    func getDayAppearance() -> YCalendarPicker.Appearance.Day {
+    func getDayAppearance() -> CalendarPicker.Appearance.Day {
         dateItem.getDayAppearance(from: appearance)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  YCalendarView.swift
+//  CalendarView.swift
 //  YCalendarPicker
 //
 //  Created by Sahil on 28/10/22.
@@ -8,8 +8,15 @@
 
 import SwiftUI
 
+
 /// Swift UI month calendar picker
-public struct YCalendarView {
+///
+/// Renamed to `CalendarView`.
+@available(*, deprecated, renamed: "CalendarView")
+public typealias YCalendarView = CalendarView
+
+/// Swift UI month calendar picker
+public struct CalendarView {
     /// Unique identifier
     ///
     /// This facilitates connection between SwiftUI & UIKit layers
@@ -24,7 +31,7 @@ public struct YCalendarView {
     var firstWeekday: Int = Locale.current.calendar.firstWeekday
     var locale: Locale = Locale.current
     /// Delegate for date/month change
-    weak public var delegate: YCalendarViewDelegate?
+    weak public var delegate: CalendarViewDelegate?
 
     /// Selected date (if any)
     public var date: Date? {
@@ -37,7 +44,7 @@ public struct YCalendarView {
     }
     
     /// Calendar appearance
-    public var appearance: YCalendarPicker.Appearance {
+    public var appearance: CalendarPicker.Appearance {
         get {
             self.appearanceObserver.appearance
         }
@@ -88,7 +95,7 @@ public struct YCalendarView {
     ///   - locale: locale for data formatting e.g Date format. Default is `nil`.
     public init(
         firstWeekday: Int? = nil,
-        appearance: YCalendarPicker.Appearance = .default,
+        appearance: CalendarPicker.Appearance = .default,
         minimumDate: Date? = nil,
         maximumDate: Date? = nil,
         locale: Locale? = nil
@@ -101,7 +108,7 @@ public struct YCalendarView {
     }
 }
 
-extension YCalendarView: View {
+extension CalendarView: View {
     /// :nodoc:
     public var body: some View {
         VStack(spacing: 0) {
@@ -166,7 +173,7 @@ extension YCalendarView: View {
     }
 }
 
-extension YCalendarView {
+extension CalendarView {
     func isDateBeforeMinimumDate(_ date: Date?) -> Bool {
         guard let date = date,
               let minDate = minimumDate else { return false }
@@ -233,9 +240,9 @@ extension YCalendarView {
     }
 }
 
-struct YCalendarView_Previews: PreviewProvider {
+struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
-        YCalendarView(
+        CalendarView(
             minimumDate: Date().startDateOfMonth().date(byAddingMonth: -1),
             maximumDate: Date().startDateOfMonth().date(byAddingMonth: 2)
         )
