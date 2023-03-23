@@ -19,19 +19,9 @@ Usage
 ----------
 
 ### `CalendarPicker` (UIKit)
-/// UIKit month calendar picker
-///
-/// Renamed to `CalendarPicker`.
-@available(*, deprecated, renamed: "CalendarPicker")
-
 `CalendarPicker` is a subclass of `UIControl` with an api similar to `UIDatePicker`.
 
 ### `CalendarView` (SwiftUI)
-/// Swift UI month calendar picker
-///
-/// Renamed to `CalendarView`.
-@available(*, deprecated, renamed: "CalendarView")
-
 `CalendarView` is a struct that conforms to the SwiftUI `View` protocol.
 
 ### Initializers
