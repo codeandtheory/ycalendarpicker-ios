@@ -1,5 +1,5 @@
 //
-//  YCalendarViewDelegate.swift
+//  CalendarViewDelegate.swift
 //  YCalendarPicker
 //
 //  Created by Sahil Saini on 07/02/23.
@@ -8,7 +8,7 @@
 
 import Foundation
 /// Protocol to observe changes in date(s)
-public protocol YCalendarViewDelegate: AnyObject {
+public protocol CalendarViewDelegate: AnyObject {
     /// Method for change in selected date.
     /// Called after the user changes the selection.
     /// - Parameter date: new selected date.

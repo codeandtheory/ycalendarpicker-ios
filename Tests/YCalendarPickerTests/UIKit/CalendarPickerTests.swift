@@ -1,5 +1,5 @@
 //
-//  YCalendarPickerTests.swift
+//  CalendarPickerTests.swift
 //  YCalendarPicker
 //
 //  Created by YML on 16/11/22.
@@ -9,8 +9,8 @@
 import XCTest
 @testable import YCalendarPicker
 
-final class YCalendarPickerTests: XCTestCase {
-    func testYCalendarPickerIsNotNil() {
+final class CalendarPickerTests: XCTestCase {
+    func testCalendarPickerIsNotNil() {
         let sut = makeSUT()
         XCTAssertNotNil(sut)
     }
@@ -23,7 +23,7 @@ final class YCalendarPickerTests: XCTestCase {
 
     func testCalendarViewAppearanceSetCorrectly() {
         let sut = makeSUT()
-        sut.appearance = YCalendarPicker.Appearance(weekdayStyle: (textColor: .red, typography: .weekday))
+        sut.appearance = CalendarPicker.Appearance(weekdayStyle: (textColor: .red, typography: .weekday))
         XCTAssertEqual(UIColor.red, sut.appearance.weekdayStyle.textColor)
     }
     
@@ -138,15 +138,15 @@ final class YCalendarPickerTests: XCTestCase {
     }
 }
 
-private extension YCalendarPickerTests {
+private extension CalendarPickerTests {
     func makeSUT(
         firstWeekday: Int? = nil,
         maxDate: Date? = nil,
         minDate: Date? = nil,
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> YCalendarPicker {
-        let sut = YCalendarPicker(minimumDate: minDate, maximumDate: maxDate)
+    ) -> CalendarPicker {
+        let sut = CalendarPicker(minimumDate: minDate, maximumDate: maxDate)
         trackForMemoryLeak(sut, file: file, line: line)
         return sut
     }
@@ -155,14 +155,14 @@ private extension YCalendarPickerTests {
         firstWeekday: Int? = nil,
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> YCalendarPicker? {
-        let sut = YCalendarPicker()
+    ) -> CalendarPicker? {
+        let sut = CalendarPicker()
         guard let data = try? NSKeyedArchiver.archivedData(withRootObject: sut, requiringSecureCoding: false) else {
             return nil
         }
         guard let coder = try? NSKeyedUnarchiver(forReadingFrom: data) else { return nil }
         trackForMemoryLeak(sut, file: file, line: line)
-        return YCalendarPicker(coder: coder)
+        return CalendarPicker(coder: coder)
     }
 
     /// Create nested view controllers containing the view to be tested so that we can override traits

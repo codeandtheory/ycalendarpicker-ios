@@ -1,6 +1,6 @@
 //
 //  DateToStringTests.swift
-//  DateCalender
+//  YCalendarPicker
 //
 //  Created by Sanjib Chakraborty on 20/06/22.
 //  Copyright © 2023 Y Media Labs. All rights reserved.

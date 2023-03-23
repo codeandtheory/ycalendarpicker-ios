@@ -1,5 +1,5 @@
 //
-//  YCalendarPicker+Strings.swift
+//  CalendarPicker+Strings.swift
 //  YCalendarPicker
 //
 //  Created by Mark Pospesel on 1/13/23.
@@ -9,7 +9,7 @@
 import Foundation
 import YCoreUI
 
-extension YCalendarPicker {
+extension CalendarPicker {
     enum Strings: String, Localizable, CaseIterable {
         case previousMonthA11yLabel = "Previous_Month_Button_A11y_Label"
         case nextMonthA11yLabel = "Next_Month_Button_A11y_Label"

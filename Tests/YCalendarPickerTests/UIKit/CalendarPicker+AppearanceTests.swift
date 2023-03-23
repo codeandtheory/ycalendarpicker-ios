@@ -1,5 +1,5 @@
 //
-//  YCalendarPicker+AppearanceTests.swift
+//  CalendarPicker+AppearanceTests.swift
 //  YCalendarPicker
 //
 //  Created by Mark Pospesel on 1/13/23.
@@ -10,7 +10,7 @@ import XCTest
 import YCoreUI
 @testable import YCalendarPicker
 
-final class YCalendarPickerAppearanceTests: XCTestCase {
+final class CalendarPickerAppearanceTests: XCTestCase {
     func testHeaderContrast() {
         let sut = makeSUT()
         _test(color1: sut.monthStyle.textColor, color2: sut.backgroundColor)
@@ -47,7 +47,7 @@ final class YCalendarPickerAppearanceTests: XCTestCase {
         for traits in UITraitCollection.allColorSpaces {
             _test(
                 traits: traits,
-                color1: YCalendarPicker.Appearance.secondaryLabel,
+                color1: CalendarPicker.Appearance.secondaryLabel,
                 color2: .systemBackground,
                 level: traits.accessibilityContrast == .high ? .AAA: .AA
             )
@@ -59,7 +59,7 @@ final class YCalendarPickerAppearanceTests: XCTestCase {
         for traits in UITraitCollection.highContrastColorSpaces {
             _test(
                 traits: traits,
-                color1: YCalendarPicker.Appearance.quaternaryLabel,
+                color1: CalendarPicker.Appearance.quaternaryLabel,
                 color2: .systemBackground,
                 context: .largeText,
                 level: .AA
@@ -68,9 +68,9 @@ final class YCalendarPickerAppearanceTests: XCTestCase {
     }
 }
 
-private extension YCalendarPickerAppearanceTests {
-    func makeSUT() -> YCalendarPicker.Appearance {
-        YCalendarPicker.Appearance.default
+private extension CalendarPickerAppearanceTests {
+    func makeSUT() -> CalendarPicker.Appearance {
+        CalendarPicker.Appearance.default
     }
 
     func _test(
@@ -115,7 +115,7 @@ private extension YCalendarPickerAppearanceTests {
         )
     }
 
-    private func _testDayAppearance(_ day: YCalendarPicker.Appearance.Day, context: WCAGContext = .normalText) {
+    private func _testDayAppearance(_ day: CalendarPicker.Appearance.Day, context: WCAGContext = .normalText) {
         let foreground = day.foregroundColor
         let background = day.backgroundColor.isClear ? makeSUT().backgroundColor : day.backgroundColor
 

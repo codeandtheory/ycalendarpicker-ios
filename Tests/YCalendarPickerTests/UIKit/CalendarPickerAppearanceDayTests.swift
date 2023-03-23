@@ -1,5 +1,5 @@
 //
-//  YCalendarPickerAppearanceDayTests.swift
+//  CalendarPickerAppearanceDayTests.swift
 //  YCalendarPicker
 //
 //  Created by Sahil Saini on 14/12/22.
@@ -9,9 +9,9 @@
 import XCTest
 @testable import YCalendarPicker
 
-final class YCalendarPickerAppearanceDayTests: XCTestCase {
+final class CalendarPickerAppearanceDayTests: XCTestCase {
     func testDefaultDayNotNil() {
-        let sut = YCalendarPicker.Appearance.Day()
+        let sut = CalendarPicker.Appearance.Day()
         XCTAssertNotNil(sut.typography)
         XCTAssertNotNil(sut.foregroundColor)
         XCTAssertNotNil(sut.backgroundColor)
@@ -20,7 +20,7 @@ final class YCalendarPickerAppearanceDayTests: XCTestCase {
     }
     
     func testDefaultDayValues() {
-        let sut = YCalendarPicker.Appearance.Day()
+        let sut = CalendarPicker.Appearance.Day()
         XCTAssertTypographyEqual(sut.typography, .day)
         XCTAssertEqual(sut.foregroundColor, UIColor.label)
         XCTAssertEqual(sut.backgroundColor, UIColor.clear)

@@ -1,5 +1,5 @@
 //
-//  YCalendarPicker+Appearance+Day.swift
+//  CalendarPicker+Appearance+Day.swift
 //  YCalendarPicker
 //
 //  Created by Sahil Saini on 14/12/22.
@@ -9,7 +9,7 @@
 import UIKit
 import YMatterType
 
-extension YCalendarPicker.Appearance {
+extension CalendarPicker.Appearance {
     /// Appearance for Date
     public struct Day {
         /// Typography for day view
@@ -46,33 +46,33 @@ extension YCalendarPicker.Appearance {
     }
 }
 
-extension YCalendarPicker.Appearance.Day {
+extension CalendarPicker.Appearance.Day {
     ///  Default Day appearances
     public enum Defaults {
         /// Default appearance for days within the current month
-        public static let normal = YCalendarPicker.Appearance.Day()
+        public static let normal = CalendarPicker.Appearance.Day()
         /// Default appearance for days outside of the current month
-        public static let grayed = YCalendarPicker.Appearance.Day(
-            foregroundColor: YCalendarPicker.Appearance.secondaryLabel
+        public static let grayed = CalendarPicker.Appearance.Day(
+            foregroundColor: CalendarPicker.Appearance.secondaryLabel
         )
         /// Default appearance for days outside enabled range
-        public static let disabled = YCalendarPicker.Appearance.Day(
-            foregroundColor: YCalendarPicker.Appearance.quaternaryLabel
+        public static let disabled = CalendarPicker.Appearance.Day(
+            foregroundColor: CalendarPicker.Appearance.quaternaryLabel
         )
         /// Default appearance for already booked day
-        public static let booked = YCalendarPicker.Appearance.Day(
-            foregroundColor: YCalendarPicker.Appearance.onBookedColor,
-            backgroundColor: YCalendarPicker.Appearance.bookedColor
+        public static let booked = CalendarPicker.Appearance.Day(
+            foregroundColor: CalendarPicker.Appearance.onBookedColor,
+            backgroundColor: CalendarPicker.Appearance.bookedColor
         )
         /// Default appearance for today (unless selected)
-        public static let today = YCalendarPicker.Appearance.Day(
-            foregroundColor: YCalendarPicker.Appearance.tintColor,
-            borderColor: YCalendarPicker.Appearance.tintColor
+        public static let today = CalendarPicker.Appearance.Day(
+            foregroundColor: CalendarPicker.Appearance.tintColor,
+            borderColor: CalendarPicker.Appearance.tintColor
         )
         /// Default appearance for currently selected day
-        public static let selected = YCalendarPicker.Appearance.Day(
-            foregroundColor: YCalendarPicker.Appearance.onTintColor,
-            backgroundColor: YCalendarPicker.Appearance.tintColor
+        public static let selected = CalendarPicker.Appearance.Day(
+            foregroundColor: CalendarPicker.Appearance.onTintColor,
+            backgroundColor: CalendarPicker.Appearance.tintColor
         )
     }
 }

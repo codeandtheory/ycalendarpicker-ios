@@ -1,8 +1,8 @@
 //
-//  YCalendarViewTests.swift
+//  CalendarViewTests.swift
 //  YCalendarPicker
 //
-//  Created by YML on 16/11/22.
+//  Created by Sahil Saini on 16/11/22.
 //  Copyright © 2023 Y Media Labs. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 @testable import YCalendarPicker
 import SwiftUI
 
-final class YCalendarViewTests: XCTestCase {
+final class CalendarViewTests: XCTestCase {
     func testDaysViewisNotNil() {
         let sut = makeSUT()
         let daysView = sut.getDaysView()
@@ -144,7 +144,7 @@ final class YCalendarViewTests: XCTestCase {
     }
     
     func testDateBodyPreviewisNotNil() {
-        XCTAssertNotNil(YCalendarView_Previews.previews)
+        XCTAssertNotNil(CalendarView_Previews.previews)
     }
     
     func testStartOfTheWeekdayIndex() {
@@ -177,8 +177,8 @@ final class YCalendarViewTests: XCTestCase {
         XCTAssertNil(sut.date)
     }
     
-    func testYCalendarViewPreviewIsNotNill() {
-        XCTAssertNotNil(YCalendarView_Previews.previews)
+    func testCalendarViewPreviewIsNotNill() {
+        XCTAssertNotNil(CalendarView_Previews.previews)
     }
 
     func testReuseIdentifierIsUnique() {
@@ -186,13 +186,13 @@ final class YCalendarViewTests: XCTestCase {
     }
 }
 
-private extension YCalendarViewTests {
+private extension CalendarViewTests {
     func makeSUT(
         firstWeekday: Int? = nil,
         minimumDate: Date? = nil,
         maximumDate: Date? = nil
-    ) -> YCalendarView {
-        let sut = YCalendarView(
+    ) -> CalendarView {
+        let sut = CalendarView(
             firstWeekday: firstWeekday ?? 0,
             minimumDate: minimumDate,
             maximumDate: maximumDate
