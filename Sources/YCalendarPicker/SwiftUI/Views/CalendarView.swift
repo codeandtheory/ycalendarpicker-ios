@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 /// Swift UI month calendar picker
 ///
 /// Renamed to `CalendarView`.
