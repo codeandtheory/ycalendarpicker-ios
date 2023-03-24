@@ -270,6 +270,11 @@ Our calendar picker also supports Swift UI!
     }
     ```
 
+Dependencies
+----------
+
+Y—CalendarPicker depends upon our [Y—CoreUI](https://github.com/yml-org/ycoreui) and [Y—MatterType](https://github.com/yml-org/ymattertype) frameworks (both also open source and Apache 2.0 licensed).
+
 Installation
 ----------
 
