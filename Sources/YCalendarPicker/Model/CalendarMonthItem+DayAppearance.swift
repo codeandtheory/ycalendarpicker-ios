@@ -13,6 +13,9 @@ extension CalendarMonthItem {
         if isBooked {
             return appearance.bookedDayAppearance
         } else if !isEnabled {
+            if isGrayedOut {
+                return appearance.grayedDayAppearance
+            }
             return appearance.disabledDayAppearance
         } else if isSelected {
             return appearance.selectedDayAppearance
