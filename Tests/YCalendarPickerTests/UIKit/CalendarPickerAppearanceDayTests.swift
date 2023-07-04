@@ -27,4 +27,13 @@ final class CalendarPickerAppearanceDayTests: XCTestCase {
         XCTAssertEqual(sut.borderColor, UIColor.clear)
         XCTAssertEqual(sut.borderWidth, 1.0)
     }
+
+    func testHiddenAppearance() {
+        let sut = CalendarPicker.Appearance.Day(isHidden: true)
+        XCTAssertTypographyEqual(sut.typography, .day)
+        XCTAssertEqual(sut.foregroundColor, UIColor.clear)
+        XCTAssertEqual(sut.backgroundColor, UIColor.clear)
+        XCTAssertEqual(sut.borderColor, UIColor.clear)
+        XCTAssertEqual(sut.borderWidth, 1.0)
+    }
 }
