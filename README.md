@@ -109,6 +109,8 @@ public struct Day {
     public var borderColor: UIColor
     /// Border width for day view
     public var borderWidth: CGFloat
+    /// Hides day view (if true)
+    public var isHidden: Bool
 }
 ```
 
