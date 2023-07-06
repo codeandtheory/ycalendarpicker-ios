@@ -47,6 +47,7 @@ extension DayView: View {
         .padding(.horizontal, DayView.padding)
         .padding(.vertical, DayView.padding)
         .onTapGesture {
+            guard !appearance.isHidden else { return }
             guard dateItem.isEnabled else { return }
             selectedDate = dateItem.date
         }

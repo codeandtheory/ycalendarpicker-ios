@@ -212,7 +212,30 @@ extension CalendarView {
     
     func getCurrentDateAfterSwipe(swipeValue: CGSize) -> Date {
         let monthCount = (swipeValue.width > 0) ? -1 : 1
-        
+
+        var isNextButtonDisabled: Bool {
+            guard let expectedDate = currentDate.date(byAddingMonth: 1)?.dateOnly else { return true }
+            if let maxDate = maximumDate, expectedDate > maxDate {
+                return true
+            }
+            return false
+        }
+
+        var isPreviousButtonDisabled: Bool {
+            // -7 as max days from previous month can be 7.
+            // current date is first of every month
+            guard let expectedDate = currentDate.date(byAddingDays: -7)?.dateOnly else { return true }
+
+            if let minDate = minimumDate, expectedDate < minDate {
+                return true
+            }
+            return false
+        }
+
+        if (monthCount == -1 && isPreviousButtonDisabled) || (monthCount == 1 && isNextButtonDisabled) {
+            return currentDate
+        }
+
         return currentDate.date(byAddingMonth: monthCount)?.dateOnly ?? currentDate
     }
     
