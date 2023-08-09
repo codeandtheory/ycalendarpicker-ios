@@ -64,7 +64,34 @@ final class CalendarPickerTests: XCTestCase {
         sut.date = selectedDate
         XCTAssertEqual(sut.date, selectedDate.dateOnly)
     }
-    
+
+    func testCalendarPickerPrecedeMinDate() throws {
+        let minDate = Date().previousDate()
+        let sut = makeSUT(minDate: minDate)
+
+        var monthView = try XCTUnwrap(sut.calendarView.getMonthView() as? MonthView)
+
+        XCTAssertTrue(monthView.isPreviousButtonDisabled)
+
+        XCTAssertEqual(
+            sut.calendarView.currentDate,
+            sut.calendarView.getCurrentDateAfterSwipe(
+                swipeValue: CGSize(width: 10, height: 10)
+            )
+        )
+
+        sut.appearance.allowPrecedeMinimumDate = true
+        monthView = try XCTUnwrap(sut.calendarView.getMonthView() as? MonthView)
+        XCTAssertFalse(monthView.isPreviousButtonDisabled)
+
+        XCTAssertNotEqual(
+            sut.calendarView.currentDate,
+            sut.calendarView.getCurrentDateAfterSwipe(
+                swipeValue: CGSize(width: 10, height: 10)
+            )
+        )
+    }
+
     func testCalendarPickerIsNotNilForOptionalInit() {
         XCTAssertNotNil(makeSUTWithFailable())
     }

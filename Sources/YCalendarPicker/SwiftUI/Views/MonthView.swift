@@ -32,6 +32,9 @@ internal struct MonthView {
     }
     
     var isPreviousButtonDisabled: Bool {
+        if appearance.allowPrecedeMinimumDate {
+            return false
+        }
         // -7 as max days from previous month can be 7.
         // current date is first of every month
         guard let expectedDate = currentDate.date(byAddingDays: -7)?.dateOnly else { return true }
