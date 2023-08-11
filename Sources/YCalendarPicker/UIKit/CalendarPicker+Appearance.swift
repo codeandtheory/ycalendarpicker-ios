@@ -39,7 +39,9 @@ extension CalendarPicker {
         public var monthStyle: (textColor: UIColor, typography: Typography)
         /// Background color for calendar view
         public var backgroundColor: UIColor
-        
+        /// Enable preceding to minimum date.
+        public var allowPrecedeMinimumDate: Bool
+
         /// Initializes a calendar appearance.
         /// - Parameters:
         ///   - normalDayAppearance: Appearance for days within current month. Default is `.Defaults.normal`.
@@ -53,6 +55,8 @@ extension CalendarPicker {
         ///   - nextImage: Next button image. Default is `Appearance.defaultNextImage`.
         ///   - monthStyle: Typography and text color for Month name. Default is `DefaultStyles.month`.
         ///   - backgroundColor: Background color for calendar view. Default is `.systemBackground`.
+        ///   - allowPrecedeMinimumDate: Enable preceding to minimum date. Default is `false`.
+
         public init(
             normalDayAppearance: Day = .Defaults.normal,
             grayedDayAppearance: Day = .Defaults.grayed,
@@ -64,7 +68,8 @@ extension CalendarPicker {
             previousImage: UIImage? = Appearance.defaultPreviousImage,
             nextImage: UIImage? = Appearance.defaultNextImage,
             monthStyle: (textColor: UIColor, typography: Typography) = DefaultStyles.month,
-            backgroundColor: UIColor = .systemBackground
+            backgroundColor: UIColor = .systemBackground,
+            allowPrecedeMinimumDate: Bool = false
         ) {
             self.normalDayAppearance = normalDayAppearance
             self.grayedDayAppearance = grayedDayAppearance
@@ -77,6 +82,7 @@ extension CalendarPicker {
             self.nextImage = nextImage
             self.monthStyle = monthStyle
             self.backgroundColor = backgroundColor
+            self.allowPrecedeMinimumDate = allowPrecedeMinimumDate
         }
     }
 }
