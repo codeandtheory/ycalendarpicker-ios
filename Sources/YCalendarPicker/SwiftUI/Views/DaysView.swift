@@ -14,6 +14,7 @@ internal struct DaysView {
     var appearance: CalendarPicker.Appearance
     @Binding var selectedDate: Date?
     let locale: Locale
+    let currentDate: Date
 }
 
 extension DaysView: View {
@@ -33,8 +34,12 @@ extension DaysView: View {
     func getDay(index: Int) -> some View {
         var dateItem = allDates[index]
         dateItem.isSelected = dateItem.date == selectedDate
+        var dayAppearance = dateItem.getDayAppearance(from: appearance)
+        if dateItem.isBooked && !dateItem.date.isSameMonth(as: currentDate) {
+            dayAppearance = appearance.grayedDayAppearance
+        }
         let dayView = DayView(
-            appearance: appearance,
+            appearance: dayAppearance,
             dateItem: dateItem,
             locale: locale,
             selectedDate: $selectedDate
@@ -49,7 +54,8 @@ struct DaysView_Previews: PreviewProvider {
             allDates: Date().getAllDatesForSelectedMonth(firstWeekIndex: 0),
             appearance: .default,
             selectedDate: .constant(Date()),
-            locale: Locale(identifier: "de_DE")
+            locale: Locale(identifier: "de_DE"),
+            currentDate: Date()
         )
         .padding(.horizontal, 16)
     }

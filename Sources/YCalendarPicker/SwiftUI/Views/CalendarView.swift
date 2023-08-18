@@ -161,7 +161,8 @@ extension CalendarView: View {
             allDates: allDates,
             appearance: appearance,
             selectedDate: selectedDate,
-            locale: locale
+            locale: locale,
+            currentDate: currentDate
         )
         .onChange(of: date) { newValue in
             selectedDateDidChange(newValue?.dateOnly)

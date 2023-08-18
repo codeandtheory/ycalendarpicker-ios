@@ -18,37 +18,36 @@ final class DayViewTests: XCTestCase {
     }
 
     func testDateTextAppearanceForSelectedDate() {
-        let sut = makeSUT(isSelected: true)
-        let selectedAppearance = sut.getDayAppearance()
-        XCTAssertAppearanceEqual(appearance1: selectedAppearance, appearance2: .Defaults.selected)
+        let sut = makeSUT(isSelected: true, appearance: .Defaults.selected)
+        XCTAssertAppearanceEqual(appearance1: sut.appearance, appearance2: .Defaults.selected)
     }
 
     func testDateTextAppearanceForToday() {
-        let sut = makeSUT()
-        XCTAssertAppearanceEqual(appearance1: sut.getDayAppearance(), appearance2: .Defaults.today)
+        let sut = makeSUT(appearance: .Defaults.today)
+        XCTAssertAppearanceEqual(appearance1: sut.appearance, appearance2: .Defaults.today)
     }
 
     func testDateTextAppearanceForCurrentMonth() {
         let previousDate = Date().previousDate()
-        let sut = makeSUT(dateToTest: previousDate)
-        XCTAssertAppearanceEqual(appearance1: sut.getDayAppearance(), appearance2: .Defaults.normal)
+        let sut = makeSUT(dateToTest: previousDate, appearance: .Defaults.normal)
+        XCTAssertAppearanceEqual(appearance1: sut.appearance, appearance2: .Defaults.normal)
     }
     
     func testDateTextAppearanceForGrayOutDate() throws {
         let previousMonthDate = try XCTUnwrap(Calendar.current.date(byAdding: .month, value: -1, to: Date()))
-        let sut = makeSUT(isGrayedOut: true, dateToTest: previousMonthDate)
-        XCTAssertAppearanceEqual(appearance1: sut.getDayAppearance(), appearance2: .Defaults.grayed)
+        let sut = makeSUT(isGrayedOut: true, dateToTest: previousMonthDate, appearance: .Defaults.grayed)
+        XCTAssertAppearanceEqual(appearance1: sut.appearance, appearance2: .Defaults.grayed)
     }
     
     func testDateTextAppearanceForNotEnabledDate() throws {
         let previousMonthDate = try XCTUnwrap(Calendar.current.date(byAdding: .month, value: -1, to: Date()))
-        let sut = makeSUT(isEnabled: false, dateToTest: previousMonthDate)
-        XCTAssertAppearanceEqual(appearance1: sut.getDayAppearance(), appearance2: .Defaults.disabled)
+        let sut = makeSUT(isEnabled: false, dateToTest: previousMonthDate, appearance: .Defaults.disabled)
+        XCTAssertAppearanceEqual(appearance1: sut.appearance, appearance2: .Defaults.disabled)
     }
     
     func testDateTextAppearanceForBookedDates() {
-        let sut = makeSUT(isBooked: true)
-        XCTAssertAppearanceEqual(appearance1: sut.getDayAppearance(), appearance2: .Defaults.booked)
+        let sut = makeSUT(isBooked: true, appearance: .Defaults.booked)
+        XCTAssertAppearanceEqual(appearance1: sut.appearance, appearance2: .Defaults.booked)
     }
     
     func testDateBodyPreviewisNotNil() {
@@ -93,7 +92,8 @@ private extension DayViewTests {
         isEnabled: Bool = true,
         dateToTest: Date = Date(),
         locale: Locale? = nil,
-        isBooked: Bool = false
+        isBooked: Bool = false,
+        appearance: CalendarPicker.Appearance.Day = .Defaults.normal
     ) -> DayView {
         let dateItem = dateToTest.toCalendarItem(
             isGrayedOut: isGrayedOut,
@@ -102,7 +102,7 @@ private extension DayViewTests {
             isBooked: isBooked
         )
         let sut = DayView(
-            appearance: .default,
+            appearance: appearance,
             dateItem: dateItem,
             locale: locale ?? Locale.current,
             selectedDate: .constant(Date())

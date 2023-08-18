@@ -17,7 +17,7 @@ struct DayView {
     /// horizontal and vertical padding around day view circles
     static let padding: CGFloat = 2
 
-    let appearance: CalendarPicker.Appearance
+    let appearance: CalendarPicker.Appearance.Day
     let dateItem: CalendarMonthItem
     let locale: Locale
     @Binding var selectedDate: Date?
@@ -25,11 +25,10 @@ struct DayView {
 
 extension DayView: View {
     var body: some View {
-        let appearance = getDayAppearance()
-        getDayView(appearance: appearance)
+        getDayView()
     }
     
-    func getDayView(appearance: CalendarPicker.Appearance.Day) -> some View {
+    func getDayView() -> some View {
         ZStack {
             TextStyleLabel(dateItem.day, typography: appearance.typography, configuration: { label in
                 label.isUserInteractionEnabled = true
@@ -85,10 +84,6 @@ extension DayView: View {
         
         return CalendarPicker.Strings.dayButtonA11yHint.localized
     }
-
-    func getDayAppearance() -> CalendarPicker.Appearance.Day {
-        dateItem.getDayAppearance(from: appearance)
-    }
 }
 
 struct DayView_Previews: PreviewProvider {
@@ -107,13 +102,44 @@ struct DayView_Previews: PreviewProvider {
         let item4 = tomorrow.toCalendarItem(isSelected: true)
         let item5 = dayAfter.toCalendarItem(isBooked: true)
         let item6 = later.toCalendarItem(isEnabled: false)
+        let appearance = CalendarPicker.Appearance()
         HStack {
-            DayView(appearance: .default, dateItem: item1, locale: locale, selectedDate: .constant(Date()))
-            DayView(appearance: .default, dateItem: item2, locale: locale, selectedDate: .constant(Date()))
-            DayView(appearance: .default, dateItem: item3, locale: locale, selectedDate: .constant(Date()))
-            DayView(appearance: .default, dateItem: item4, locale: locale, selectedDate: .constant(Date()))
-            DayView(appearance: .default, dateItem: item5, locale: locale, selectedDate: .constant(Date()))
-            DayView(appearance: .default, dateItem: item6, locale: locale, selectedDate: .constant(Date()))
+            DayView(
+                appearance: appearance.grayedDayAppearance,
+                dateItem: item1,
+                locale: locale,
+                selectedDate: .constant(Date())
+            )
+            DayView(
+                appearance: appearance.normalDayAppearance,
+                dateItem: item2,
+                locale: locale,
+                selectedDate: .constant(Date())
+            )
+            DayView(
+                appearance: appearance.todayAppearance,
+                dateItem: item3,
+                locale: locale,
+                selectedDate: .constant(Date())
+            )
+            DayView(
+                appearance: appearance.selectedDayAppearance,
+                dateItem: item4,
+                locale: locale,
+                selectedDate: .constant(Date())
+            )
+            DayView(
+                appearance: appearance.bookedDayAppearance,
+                dateItem: item5,
+                locale: locale,
+                selectedDate: .constant(Date())
+            )
+            DayView(
+                appearance: appearance.disabledDayAppearance,
+                dateItem: item6,
+                locale: locale,
+                selectedDate: .constant(Date())
+            )
         }
         .padding(.horizontal, 16)
     }
