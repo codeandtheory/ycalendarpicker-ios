@@ -39,7 +39,8 @@ private extension DaysViewTests {
             allDates: allDates,
             appearance: .default,
             selectedDate: .constant(Date()),
-            locale: Locale.current
+            locale: Locale.current,
+            currentDate: Date()
         )
         XCTAssertNotNil(sut.body)
         return sut
