@@ -35,7 +35,7 @@ extension DaysView: View {
         var dateItem = allDates[index]
         dateItem.isSelected = dateItem.date == selectedDate
         var dayAppearance = dateItem.getDayAppearance(from: appearance)
-        if dateItem.isBooked && !dateItem.date.isSameMonth(as: currentDate) {
+        if !dateItem.date.isSameMonth(as: currentDate) {
             dayAppearance = appearance.grayedDayAppearance
         }
         let dayView = DayView(
