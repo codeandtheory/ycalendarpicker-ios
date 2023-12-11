@@ -103,7 +103,6 @@ public struct CalendarView {
         maximumDate: Date? = nil,
         startDate: Date? = nil,
         locale: Locale? = nil
-        
     ) {
         self.firstWeekday = firstWeekday ?? (Locale.current.calendar.firstWeekday - 1)
         self.appearance = appearance
