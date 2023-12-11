@@ -42,6 +42,9 @@ public struct CalendarView {
         }
     }
     
+    /// Start date (if any)
+    public var startDate: Date?
+    
     /// Calendar appearance
     public var appearance: CalendarPicker.Appearance {
         get {
@@ -91,19 +94,23 @@ public struct CalendarView {
     ///   - appearance: appearance of calendar view. Default is `Appearance.default`.
     ///   - minimumDate: minimum date to enable. Default is `nil`.
     ///   - maximumDate: maximum date to enable. Default is `nil`.
+    ///   - startDate: start date of the calendar. Default is `nil`.
     ///   - locale: locale for data formatting e.g Date format. Default is `nil`.
     public init(
         firstWeekday: Int? = nil,
         appearance: CalendarPicker.Appearance = .default,
         minimumDate: Date? = nil,
         maximumDate: Date? = nil,
+        startDate: Date? = nil,
         locale: Locale? = nil
+        
     ) {
         self.firstWeekday = firstWeekday ?? (Locale.current.calendar.firstWeekday - 1)
         self.appearance = appearance
         self.minimumDate = minimumDate?.dateOnly
         self.maximumDate = maximumDate?.dateOnly
         self.locale = locale ?? Locale.current
+        self.startDate = startDate
     }
 }
 
@@ -120,6 +127,11 @@ extension CalendarView: View {
             })
         )
         .background(Color(self.appearance.backgroundColor))
+        .onAppear(perform: {
+            if let getStartDate = self.startDate {
+                currentDate = getStartDate
+            }
+        })
     }
     
     @ViewBuilder

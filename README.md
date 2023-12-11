@@ -34,10 +34,11 @@ init(
     appearance: Appearance = .default, 
     minimumDate: Date? = nil, 
     maximumDate: Date? = nil, 
+    startDate: Date? = nil,
     locale: Locale? = nil
 )
 ```
-The standard initializer lets you specify the first day of the week, appearance, optional minimum and maximum dates, and the locale, although it provides sensible defaults for all of these.
+The standard initializer lets you specify the first day of the week, appearance, optional minimum and maximum dates, start date of the calendar and the locale, although it provides sensible defaults for all of these.
 
 `CalendarPicker` has an additional initializer:
 
