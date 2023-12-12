@@ -109,7 +109,7 @@ public struct CalendarView {
         self.minimumDate = minimumDate?.dateOnly
         self.maximumDate = maximumDate?.dateOnly
         self.locale = locale ?? Locale.current
-        self.startDate = startDate
+        self.startDate = startDate?.startDateOfMonth()
     }
 }
 

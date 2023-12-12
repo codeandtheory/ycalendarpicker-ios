@@ -178,9 +178,10 @@ final class CalendarViewTests: XCTestCase {
     }
     
     func testOnStartDate() {
-        let sut = makeSUT(startDate: Date().date(byAddingMonth: 4))
+        let expectedDate = Date().date(byAddingMonth: 4)
+        let sut = makeSUT(startDate: expectedDate)
         XCTAssertNotNil(sut.startDate)
-        XCTAssertNotEqual(sut.currentDate, sut.startDate)
+        XCTAssertEqual(expectedDate?.startDateOfMonth(), sut.startDate)
     }
     
     func testCalendarViewPreviewIsNotNill() {
