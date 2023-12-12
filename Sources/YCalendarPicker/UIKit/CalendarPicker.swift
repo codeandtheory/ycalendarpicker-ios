@@ -58,12 +58,14 @@ public class CalendarPicker: UIControl {
     ///   - appearance: appearance for the calendar. Default is `.default`.
     ///   - minimumDate: minimum selectable date. Default is `nil`.
     ///   - maximumDate: maximum selectable date. Default is `nil`.
+    ///   - startDate: start date of the calendar. Default is `nil`.
     ///   - locale: locale for date formatting. Pass `nil` to use current locale. Default is `nil`.
     public required init(
         firstWeekday: Int? = nil,
         appearance: Appearance = .default,
         minimumDate: Date? = nil,
         maximumDate: Date? = nil,
+        startDate: Date? = nil,
         locale: Locale? = nil
     ) {
         calendarView = CalendarView(
@@ -71,6 +73,7 @@ public class CalendarPicker: UIControl {
             appearance: appearance,
             minimumDate: minimumDate,
             maximumDate: maximumDate,
+            startDate: startDate,
             locale: locale
         )
         super.init(frame: .zero)
@@ -83,6 +86,7 @@ public class CalendarPicker: UIControl {
             appearance: Appearance(),
             minimumDate: nil,
             maximumDate: nil,
+            startDate: nil,
             locale: nil
         )
         super.init(coder: coder)

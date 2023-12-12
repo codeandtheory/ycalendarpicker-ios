@@ -177,6 +177,12 @@ final class CalendarViewTests: XCTestCase {
         XCTAssertNil(sut.date)
     }
     
+    func testOnStartDate() {
+        let sut = makeSUT(startDate: Date().date(byAddingMonth: 4))
+        XCTAssertNotNil(sut.startDate)
+        XCTAssertNotEqual(sut.currentDate, sut.startDate)
+    }
+    
     func testCalendarViewPreviewIsNotNill() {
         XCTAssertNotNil(CalendarView_Previews.previews)
     }
@@ -190,12 +196,14 @@ private extension CalendarViewTests {
     func makeSUT(
         firstWeekday: Int? = nil,
         minimumDate: Date? = nil,
-        maximumDate: Date? = nil
+        maximumDate: Date? = nil,
+        startDate: Date? = nil
     ) -> CalendarView {
         let sut = CalendarView(
             firstWeekday: firstWeekday ?? 0,
             minimumDate: minimumDate,
-            maximumDate: maximumDate
+            maximumDate: maximumDate,
+            startDate: startDate
         )
         XCTAssertNotNil(sut.body)
         return sut
